@@ -3,7 +3,8 @@ import express from 'express';
 
 const app = express();
 
-const port = 4000;
+const PORT = process.env['PORT'];
+const NODE_ENV = process.env['NODE_ENV'];
 
 app.use(cors());
 app.use(express.json());
@@ -16,7 +17,7 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`API → http://localhost:${port}`);
-  console.log(`Health check: http://localhost:${port}/api/health`);
+app.listen(PORT, () => {
+  console.log(`API → http://localhost:${PORT} [mode: ${NODE_ENV}]`);
+  console.log(`Health check: http://localhost:${PORT}/api/health`);
 });
